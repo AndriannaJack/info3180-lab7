@@ -9,6 +9,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, jsonify
 from bs4 import BeautifulSoup
 import requests
+from image_getter import imgGets
 import urlparse
 
 ###
@@ -42,6 +43,12 @@ def add_header(response):
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
+@app.route('/api/thumbnails', methods=["GET"])
+def thumbnails():
+    error= None
+    message="success"
+    urls= { error:error, message:message, thumbnails:imgGet()}
+    return jsonify(urls)
 
 @app.errorhandler(404)
 def page_not_found(error):
