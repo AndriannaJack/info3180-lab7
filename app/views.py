@@ -45,10 +45,16 @@ def add_header(response):
 
 @app.route('/api/thumbnails', methods=["GET"])
 def thumbnails():
-    error= None
-    message="success"
-    urls= { error:error, message:message, thumbnails:imgGet()}
+    #site_url = "https://www.walmart.com/ip/54649026"
+    # error= None
+    # message="success"
+    urls= { "error":"error", "message":"message", "thumbnails":imgGet()}
     return jsonify(urls)
+
+@app.route('/thumbnails/view', methods=["GET"])
+def thumbnails_view():
+    return render_template ('thumbnails.html)') 
+    
 
 @app.errorhandler(404)
 def page_not_found(error):
